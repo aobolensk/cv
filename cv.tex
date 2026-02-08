@@ -1,0 +1,361 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[a4paper,margin=1.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+\usepackage{fontawesome5}
+
+% ---------- Styling ----------
+\definecolor{Accent}{HTML}{1F4E79}
+\definecolor{Muted}{HTML}{6B7280}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.3em}
+
+\titleformat{\section}
+  {\large\bfseries\color{Accent}}
+  {}{0pt}{}
+  [\vspace{-0.1em}\titlerule]
+
+\titlespacing*{\section}{0pt}{0.9em}{0.5em}
+
+\setlist[itemize]{leftmargin=1.2em, topsep=0.25em, itemsep=0.15em, parsep=0em}
+
+% ---------- Personal Information ----------
+
+\newcommand{\FullName}{Arseniy Obolenskiy}
+\newcommand{\Email}{good.doog.2012@gmail.com}
+\newcommand{\Location}{Munich, Bavaria, Germany}
+
+\newcommand{\LinkedInURL}{https://www.linkedin.com/in/arseniy-obolenskiy/}
+\newcommand{\GitHubURL}{https://github.com/aobolensk}
+
+% ---------- Helpers ----------
+\newcommand{\iconsep}{\hspace{0.6em}}
+\newcommand{\muted}[1]{{\color{Muted}#1}}
+
+\newcommand{\cvheader}{%
+  \begin{flushright}
+    {\Huge\bfseries \FullName}\par
+    \vspace{0.2em}
+    \small
+    \faEnvelope\iconsep
+    \href{mailto:\Email}{\Email}%
+    \iconsep
+    \faMapMarker*\iconsep\Location\par
+    \vspace{0.15em}
+    \small
+    \faLinkedin\iconsep\href{\LinkedInURL}{LinkedIn}\iconsep
+    \faGithub\iconsep\href{\GitHubURL}{GitHub}%
+    \par
+    \vspace{0.6em}
+  \end{flushright}
+}
+
+\newcommand{\cventry}[5]{%
+  \par\noindent
+  \begin{tabularx}{\linewidth}{@{}p{0.17\linewidth}@{\hspace{0.55em}}X@{}}
+    \muted{\small #1} &
+    {\textbf{#3} \hfill \muted{\small #4}}\\[-0.15em]
+    & {\textit{#2}}\\
+  \end{tabularx}\par
+  #5
+  \vspace{0.25em}
+}
+
+\newcommand{\cvbullets}[1]{%
+  \begin{itemize}[leftmargin=1.4em, labelsep=0.5em]
+    #1
+  \end{itemize}
+}
+
+\newcommand{\cvplain}[1]{%
+  \vspace{0.1em}
+  \small #1
+  \par
+}
+
+% ---------- Document ----------
+\begin{document}
+\cvheader
+
+% ---------- Summary ----------
+\section*{Profile}
+\justifying
+I am a software engineer working in compiler development industry. I have experience in C++ and Python programming, worked in projects related to media software stack and currently focused on working in compiler development and AI frameworks scope. Furthermore, I am participating in knowledge sharing activities, involved into teaching and mentoring. Also, I am fond of doing pet open source projects in my spare time on GitHub to learn some technologies besides professional job experience.
+I am looking for professional growth and strive to learn something new and develop skills.
+
+% ---------- Work Experience ----------
+\section*{Work Experience}
+
+\cventry
+  {01.2025 -- present}
+  {Intel Corporation}
+  {AI Frameworks Engineer}
+  {Munich, Bavaria, Germany}
+  {\cvbullets{
+    \item Enabled acceleration of common LLM subgraph patterns on model compilation step, gaining performance for multiple model variants on both x86, ARM and RISC-V platforms
+    \item Maintained RISC-V CPU inference component, drove collaboration activities for new outside contributors
+    \item Led code-quality improvement initiatives by adopting clang-tidy static analysis across a large codebase, performing extensive code cleanup, and enforcing best practices reducing overall code review time
+    \item Related open source repository: \href{https://github.com/openvinotoolkit/openvino}{github.com/openvinotoolkit/openvino}
+  }}
+
+\cventry
+  {09.2025 -- present}
+  {Nizhny Novgorod State University}
+  {Research Supervisor}
+  {Remote (contract)}
+  {%
+    \cvplain{Supervising student research and thesis projects}
+  }
+
+\cventry
+  {02.2024 -- present}
+  {Nizhny Novgorod State University}
+  {Lecturer}
+  {Remote (contract)}
+  {%
+   \cvplain{Working as a lecturer for several subjects: \textit{Introduction to Compilers}, \textit{Parallel Programming}, \textit{Basics of AI accelerators programming}.}
+   \vspace{0.1em}
+   \textbf{Introduction to Compilers}\par
+   \cvbullets{
+     \item Extended and updated materials for ``Introduction to Compilers'' course
+     \item Delivered lectures on ``Introduction to Compilers''
+     \item Introduced short tests component for the lectures to measure subject understanding among the students
+     \item Prepared an infrastructure for practical component of the course and participated in student laboratory assignments review
+     \item Prepared publicly available course materials: \href{https://github.com/NN-complr-tech/Complr-course-lectures}{github.com/NN-complr-tech/Complr-course-lectures}
+   }
+   \par
+   \textbf{Parallel Programming}\par
+   \cvbullets{
+     \item Delivered practice oriented lectures as a part of ``Parallel Programming'' course
+     \item Prepared publicly available course materials: \href{https://github.com/learning-process/parallel_programming_slides}{github.com/learning-process/parallel\_programming\_slides}
+   }
+   \par
+   \textbf{Basics of AI accelerators programming}\par
+   \cvbullets{
+     \item Implemented part of lectures about Ascend NPU from scratch
+     \item Delivered lectures on ``Basics of AI accelerators programming'' about Ascend NPU
+   }
+  }
+
+\cventry
+  {09.2023 -- 12.2024}
+  {Huawei}
+  {Senior Software Engineer}
+  {Dongguan, Guangdong, China / Suzhou, Jiangsu, China}
+  {\cvbullets{
+    \item Worked on MLIR based solution for HW specific code optimizations for ML operators written for different ML frameworks, implementing and enabling source-to-source compiler based transformation
+    \item Worked on binary profiling tool implementation using binary instrumentation technology on LLVM stack and custom written from scratch non-LLVM infrastructure
+    \item Prototyped conversion tool for source-to-source transformation of OpenMP pragma directives using clang frontend capabilities
+    \item Investigated different variation of compiler based source-to-source code transformations for conversion between different programming models
+    \item Performed team research project deliverables' integration into headquarters product mainline, meeting and negotiating with headquarters team members; successfully integrated two projects developed by overseas team into the product mainline
+  }}
+
+\cventry
+  {09.2022 -- 09.2023}
+  {Huawei}
+  {Software Engineer}
+  {Nizhny Novgorod, Russia}
+  {\cvbullets{
+    \item Worked on LLVM-based compiler for NPU
+    \item Implemented whole compilation stack from FE programming model to backend code generation: clang, MLIR, LLVM, target specific assembly
+    \item Implemented solution for source-to-source MLIR based code transformation for code conversion between different programming models (SIMT and SIMD)
+    \item Implemented binary profiling tool using binary instrumentation technology on LLVM stack
+    \item Was in charge of CI infrastructure for all projects in research team
+  }}
+
+\cventry
+  {12.2021 -- 09.2022}
+  {Intel Corporation}
+  {Compiler Engineer}
+  {Nizhny Novgorod, Russia}
+  {\cvbullets{
+    \item Working on various features and fixing bugs reported by the community in DPC++ compiler
+    \item Supporting SYCL device headers
+  }}
+
+\cventry
+  {08.2021 -- 12.2021}
+  {Intel Corporation}
+  {Graphics Software Engineer}
+  {Nizhny Novgorod, Russia}
+  {\cvbullets{
+    \item Worked on a PoC of a new SDK for media stack related to screen sharing and broadcasting
+  }}
+
+\cventry
+  {12.2020 -- 12.2022}
+  {Nizhny Novgorod State University}
+  {Laboratory Research Assistant (part-time)}
+  {Nizhny Novgorod, Russia}
+  {\cvbullets{
+    \item Worked on graph and ML algorithms application for solving biological problems
+    \item Worked on researching OpenVINO neural network layers optimization for ARM CPU architecture
+  }}
+
+\cventry
+  {01.2020 -- 08.2021}
+  {Intel Corporation}
+  {Graphics Software Intern}
+  {Nizhny Novgorod, Russia}
+  {\cvbullets{
+    \item Worked on various features and supported MediaSDK and oneVPL products for Intel GPUs
+    \item Worked with customers and community
+    \item Supported C++ validation framework
+    \item Related open source repositories:
+      \begin{itemize}
+        \item \href{https://github.com/Intel-Media-SDK/MediaSDK}{github.com/Intel-Media-SDK/MediaSDK}
+        \item \href{https://github.com/oneapi-src/oneVPL-intel-gpu}{github.com/oneapi-src/oneVPL-intel-gpu}
+      \end{itemize}
+  }}
+
+% ---------- Volunteering ----------
+\section*{Volunteering}
+
+\cventry
+  {10.2021 -- present}
+  {Nizhny Novgorod State University}
+  {Mentor and Project Supervisor (ITLab)}
+  {Remote}
+  {\cvbullets{
+    \item Participate in the ITLab initiative and supervise voluntary IT classes and project-based work for Bachelor's degree students
+    \item Mentor project teams of 2 -- 6 students from topic definition to implementation and final project review
+    \item Topics: 10.2025 -- present (6 students): Android applications development with LLM workflows based on OpenVINO Java API and ARM CPU plugin
+    \item Topics: 10.2025 -- present (3 students): optimization of neural network layers for LLM tasks on embedded RISC-V architectures in OpenVINO Toolkit
+    \item Topics: 10.2024 -- present (4 students): neural network inference using ARM Compute Library and industrial software development
+    \item Topics: 10.2023 -- present (3 -- 4 students): neural network inference framework implementation and industrial software development
+    \item Topics: 10.2022 -- 06.2023 (2 students): computer vision algorithms optimization on embedded devices
+    \item Topics: 10.2021 -- 06.2022 (2 students): neural networks optimization on ARM architecture
+    \item Project materials and source code: \href{https://github.com/embedded-dev-research}{github.com/embedded-dev-research}
+  }}
+
+% ---------- Education ----------
+\section*{Education}
+
+\cventry
+  {10.2023 -- 06.2026}
+  {Nizhny Novgorod State University}
+  {PhD Program, Computer Science and Informatics}
+  {Nizhny Novgorod, Russia}
+  {\cvplain{PhD candidate: Coursework completed, ABD (all but dissertation)}}
+
+\cventry
+  {09.2021 -- 06.2023}
+  {Nizhny Novgorod State University}
+  {Master's degree with honors, Fundamental Informatics and IT}
+  {Nizhny Novgorod, Russia}
+  {\cvbullets{
+    \item Neural network optimization research on ARM architecture
+    \item Was a mentor for a group of students in ITLab project
+    \item Final qualification work: ``Neural networks inference optimization on ARM architecture''
+  }}
+
+\cventry
+  {09.2017 -- 06.2021}
+  {Nizhny Novgorod State University}
+  {Bachelor's degree with honors, Software Engineering}
+  {Nizhny Novgorod, Russia}
+  {\cvbullets{
+    \item Graph algorithms and data structures research; graph coarsening implementation; neural networks application to tasks related to graphs
+    \item Participated in ITLab project
+    \item Final qualification work: ``Building graphs that are topologically similar to the original ones to improve the accuracy of machine learning algorithms''
+  }}
+
+% ---------- Publications ----------
+\section*{Publications}
+\cventry
+  {02.01.2026}
+  {Springer, Supercomputing (RuSCDays 2025), LNCS vol. 16196}
+  {Practical Aspects of Teaching Parallel Programming at the Lobachevsky University}
+  {}
+  {%
+    \cvplain{\textbf{Language:} English}
+    \cvplain{\textbf{DOI:} \href{https://doi.org/10.1007/978-3-032-13127-0_37}{\nolinkurl{10.1007/978-3-032-13127-0_37}} \quad
+    }
+  }
+
+\cventry
+  {19.11.2025}
+  {Mathematical Modeling and Supercomputer Technologies Conference 2025}
+  {Collaborative development of a library for convolutional neural networks inference}
+  {}
+  {%
+    \cvplain{\textbf{Language:} Russian}
+    \cvplain{\textbf{Link:} \href{https://web.archive.org/web/20251209131202id_/https://mmst.unn.ru/wp-content/uploads/2025/12/MMST2025_Proceedings.pdf\#page=152}{\nolinkurl{mmst.unn.ru/wp-content/uploads/2025/12/MMST2025_Proceedings.pdf\#page=152}} \quad
+    }
+  }
+
+\cventry
+  {14.11.2022}
+  {Mathematical Modeling and Supercomputer Technologies Conference 2022}
+  {Neural network layers optimization on ARM architecture}
+  {}
+  {%
+    \cvplain{\textbf{Language:} Russian}
+    \cvplain{\textbf{Link:} \href{https://web.archive.org/web/20221124173857id_/https://hpc-education.unn.ru/files/conference_hpc/2022/MMST2022_Proceedings.pdf\#page=86}{\nolinkurl{hpc-education.unn.ru/files/conference_hpc/2022/MMST2022_Proceedings.pdf\#page=86}} \quad
+    }
+  }
+
+\cventry
+  {22.11.2021}
+  {Mathematical Modeling and Supercomputer Technologies Conference 2021}
+  {Application of machine learning methods to determine the origin of people based on the results of a mutation in their DNA}
+  {}
+  {%
+    \cvplain{\textbf{Language:} Russian}
+    \cvplain{\textbf{Link:} \href{https://web.archive.org/web/20220331185330id_/https://hpc-education.unn.ru/files/conference_hpc/2021/MMST2021_Proceedings.pdf\#page=251}{\nolinkurl{hpc-education.unn.ru/files/conference_hpc/2021/MMST2021_Proceedings.pdf\#page=251}} \quad
+    }
+  }
+
+\cventry
+  {21.09.2020}
+  {International Conference Russian Supercomputing Days 2020}
+  {Comparison of graph coarsening algorithms in parallel sparse matrix reordering task}
+  {}
+  {%
+    \cvplain{\textbf{Language:} Russian}
+    \cvplain{\textbf{Link:} \href{https://web.archive.org/web/20201110231956id_/https://2020.russianscdays.org/files/2020/RuSCDays20_Proceedings.pdf\#page=142}{\nolinkurl{2020.russianscdays.org/files/2020/RuSCDays20_Proceedings.pdf\#page=142}} \quad
+    }
+  }
+
+% ---------- Languages & Skills ----------
+\section*{Languages}
+\begin{tabular}{@{}l@{\hspace{0.8em}}l@{}}
+  \textbf{English} & upper intermediate (B2) \\
+  \textbf{Russian} & native \\
+  \textbf{German} & elementary (A2) \\
+  \textbf{Mandarin Chinese} & elementary (HSK 2) \\
+\end{tabular}
+
+\section*{Professional Skills}
+\small
+C/C++, %
+Python, %
+LLVM, %
+MLIR, %
+source-to-source transformations, %
+code generation, %
+performance optimization and profiling, %
+static code analysis, %
+CI/CD, %
+AI frameworks (PyTorch, OpenVINO), %
+LLM inference optimization, %
+parallel programming (OpenMP, SYCL), %
+CPU/NPU architecture-aware optimization (x86, ARM, RISC-V), %
+binary instrumentation, %
+Linux, %
+Git, %
+research project leadership, %
+university lecturing and mentoring
+
+\end{document}
