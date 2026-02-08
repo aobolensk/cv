@@ -1,0 +1,67 @@
+name: Build PDF
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra
+      - name: Build
+        run: |
+          for tex_file in *.tex; do
+            pdflatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory . "$tex_file"
+            pdflatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory . "$tex_file"
+          done
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: cv-pdf
+          path: "*.pdf"
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download PDF artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: cv-pdf
+          path: site
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
